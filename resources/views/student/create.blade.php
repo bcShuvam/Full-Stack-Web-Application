@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Create Student</title>
-</head>
-
-<body>
+@extends('layouts.app')
+@section('title', 'Create Student')
+@section('content')
     <h1>Create Student</h1>
-    <form action="/students" method="POST">
+    @include('layouts.errors')
+    <form action="{{ route('students.store') }}" method="POST">
         @csrf
         <div>
             <label for="name">Name</label>
@@ -31,15 +27,16 @@
         <br>
         <div>
             <label for="date_of_birth">Date of Birth</label>
-            <input type="date" id="date_of_birth" name="date_of_birth" value="{{ old('date_of_birth') }}">
+            <input
+                type="date"
+                id="date_of_birth"
+                name="date_of_birth"
+                value="{{ old('date_of_birth') }}"
+            >
         </div>
         <br>
-        <button type="submit">
-            Create Student
-        </button>
+        <button type="submit">Create Student</button>
     </form>
     <br>
-    <a href="/students">Back to Students</a>
-</body>
-
-</html>
+    <a href="{{ route('students.index') }}">Back to Students</a>
+@endsection

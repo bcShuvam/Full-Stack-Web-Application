@@ -17,7 +17,7 @@
         </ul>
     </div>
     @endif
-    <form action="/students/{{ $student->id }}" method="POST">
+    <form action="{{ route('students.update', $student->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div>
@@ -43,7 +43,7 @@
         <div>
             <label for="date_of_birth">Date of Birth</label>
             <input type="date" id="date_of_birth" name="date_of_birth"
-                value="{{ old('date_of_birth', $student->date_of_birth) }}">
+                value="{{ old('date_of_birth', $student->date_of_birth?->format('Y-m-d')) }}">
         </div>
         <br>
         <button type="submit">
@@ -51,7 +51,7 @@
         </button>
     </form>
     <br>
-    <a href="/students">
+    <a href="{{ route('students.index') }}">
         Back to Students
     </a>
 </body>
